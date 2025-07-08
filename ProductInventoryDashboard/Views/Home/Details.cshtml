@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProductInventoryDashboard.Models.Product>
+﻿@model ProductInventoryDashboard.Models.Product
 @{
     ViewData["Title"] = "Product Dashboard";
 }
@@ -23,13 +23,6 @@
     {
         <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
     }
-    else if (!Model.Any())
-    {
-        <div class="alert alert-warning text-center">
-            <h4>No Products Found</h4>
-            <p>The database query returned no results. Try a different search term or clear the filter.</p>
-        </div>
-    }
     else
     {
         <div class="table-responsive shadow-sm">
@@ -40,22 +33,15 @@
                         <th>Name</th>
                         <th>Price</th>
                         <th>Stock Level</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var product in Model)
-                    {
-                        <tr>
-                            <td>@product.SKU</td>
-                            <td>@product.Name</td>
-                            <td>@product.Price.ToString("C")</td>
-                            <td>@product.StockLevel</td>
-                            <td class="text-center">
-                                <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-sm btn-info">Details</a>
-                            </td>
-                        </tr>
-                    }
+                    <tr>
+                        <td>@Model.SKU</td>
+                        <td>@Model.Name</td>
+                        <td>@Model.Price.ToString("C")</td>
+                        <td>@Model.StockLevel</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
